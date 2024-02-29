@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { Commands, EXTENSION_NAME } from "../constants";
 import RegisteredCommands from "../commands";
+import { getStaleLocalBranches, pruneStaleRemoteBranches } from "./git";
 
 export const initializeExtension = (context: vscode.ExtensionContext) => {
   const extensionConfiguration =
@@ -8,7 +9,11 @@ export const initializeExtension = (context: vscode.ExtensionContext) => {
 
   initializeCommands(context);
 
-  const statusBar = initializeStatusBar(context, extensionConfiguration);
+  const statusBar = initializeStatusBar(
+    context,
+    extensionConfiguration,
+    Commands.PRUNE_STALE_BRANCHES
+  );
 };
 
 const initializeCommands = (context: vscode.ExtensionContext): void => {
@@ -17,18 +22,32 @@ const initializeCommands = (context: vscode.ExtensionContext): void => {
   });
 };
 
-const initializeStatusBar = (
+const initializeStatusBar = async (
   context: vscode.ExtensionContext,
   extensionConfiguration: vscode.WorkspaceConfiguration,
-  command = Commands.PREVIEW_STALE_BRANCHES
-): vscode.StatusBarItem => {
+  command: Commands
+): Promise<vscode.StatusBarItem | void> => {
+  // TODO: Add a configuration option to customize the status bar item
   const statusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
     100
   );
-  statusBarItem.text = "$(list-tree) Stale Branches";
-  statusBarItem.command = command;
-  statusBarItem.tooltip = "Preview stale branches";
-  statusBarItem.show();
-  return statusBarItem;
+
+  // Only render the status bar item if the workspace is available and there are stale branches
+  if (vscode.workspace.workspaceFolders) {
+    const workSpaceUri = vscode.workspace.workspaceFolders[0].uri.fsPath;
+    await pruneStaleRemoteBranches(workSpaceUri);
+    const branches = await getStaleLocalBranches(workSpaceUri);
+    const staleBranchCount = branches.length;
+    if (staleBranchCount > 0) {
+      statusBarItem.text = `${staleBranchCount} $(list-tree)`;
+      statusBarItem.command = command;
+      statusBarItem.tooltip = "Prune stale branches";
+      statusBarItem.show();
+      return statusBarItem;
+    } else {
+      statusBarItem.hide();
+    }
+  }
+  return;
 };

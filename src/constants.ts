@@ -8,4 +8,5 @@ export const EXTENSION_NAME = "prune-stale-branches";
  */
 export const enum Commands {
   PREVIEW_STALE_BRANCHES = `${EXTENSION_NAME}.previewStaleBranchesCommand`,
+  PRUNE_STALE_BRANCHES = `${EXTENSION_NAME}.pruneStaleBranchesCommand`,
 }
