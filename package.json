@@ -37,8 +37,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "prune-stale-branches.preview",
+        "command": "prune-stale-branches.previewStaleBranchesCommand",
         "title": "Preview Stale Branches"
+      },
+      {
+        "command": "prune-stale-branches.pruneStaleBranchesCommand",
+        "title": "Prune Stale Branches"
       }
     ]
   },

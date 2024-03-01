@@ -3,22 +3,24 @@ import { Commands, EXTENSION_NAME } from "../constants";
 import RegisteredCommands from "../commands";
 import { getStaleLocalBranches, pruneStaleRemoteBranches } from "./git";
 
-export const initializeExtension = (context: vscode.ExtensionContext) => {
+export const initializeExtension = async (context: vscode.ExtensionContext) => {
   const extensionConfiguration =
     vscode.workspace.getConfiguration(EXTENSION_NAME);
 
-  initializeCommands(context);
-
-  const statusBar = initializeStatusBar(
+  const statusBar: vscode.StatusBarItem = await initializeStatusBar(
     context,
     extensionConfiguration,
     Commands.PRUNE_STALE_BRANCHES
   );
+  initializeCommands(context, statusBar);
 };
 
-const initializeCommands = (context: vscode.ExtensionContext): void => {
+const initializeCommands = (
+  context: vscode.ExtensionContext,
+  statusBar: vscode.StatusBarItem
+): void => {
   RegisteredCommands.forEach((command) => {
-    context.subscriptions.push(command());
+    context.subscriptions.push(command(statusBar));
   });
 };
 
@@ -26,8 +28,8 @@ const initializeStatusBar = async (
   context: vscode.ExtensionContext,
   extensionConfiguration: vscode.WorkspaceConfiguration,
   command: Commands
-): Promise<vscode.StatusBarItem | void> => {
-  // TODO: Add a configuration option to customize the status bar item
+): Promise<vscode.StatusBarItem> => {
+  // TODO: Add a configuration option to customize the status bar priority
   const statusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
     100
@@ -44,10 +46,10 @@ const initializeStatusBar = async (
       statusBarItem.command = command;
       statusBarItem.tooltip = "Prune stale branches";
       statusBarItem.show();
-      return statusBarItem;
     } else {
+      statusBarItem.text = "";
       statusBarItem.hide();
     }
   }
-  return;
+  return statusBarItem;
 };

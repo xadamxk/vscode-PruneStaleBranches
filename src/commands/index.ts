@@ -3,7 +3,9 @@ import * as vscode from "vscode";
 import { previewStaleBranchesCommand } from "./previewStaleBranchesCommand";
 import { pruneStaleBranchesCommand } from "./pruneStaleBranchesCommand";
 
-const RegisteredCommands: (() => vscode.Disposable)[] = [
+const RegisteredCommands: ((
+  statusBarItem: vscode.StatusBarItem
+) => vscode.Disposable)[] = [
   previewStaleBranchesCommand,
   pruneStaleBranchesCommand,
 ];
