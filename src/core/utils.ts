@@ -2,6 +2,10 @@ import * as vscode from "vscode";
 import { Commands, EXTENSION_NAME } from "../constants";
 import RegisteredCommands from "../commands";
 import { getStaleLocalBranches, pruneStaleRemoteBranches } from "./git";
+import {
+  ExtensionConfiguration,
+  determineStatusBarAlignment,
+} from "./configuration";
 
 export const initializeExtension = async (context: vscode.ExtensionContext) => {
   const extensionConfiguration =
@@ -31,9 +35,18 @@ const initializeStatusBar = async (
 ): Promise<vscode.StatusBarItem> => {
   // TODO: Add a configuration option to customize the status bar priority
   const statusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Right,
+    determineStatusBarAlignment(
+      extensionConfiguration.get(ExtensionConfiguration.StatusBarAlignment)
+    ),
     100
   );
+
+  if (
+    extensionConfiguration.get(ExtensionConfiguration.StatusBarEnabled) !== true
+  ) {
+    statusBarItem.hide();
+    return statusBarItem;
+  }
 
   // Only render the status bar item if the workspace is available and there are stale branches
   if (vscode.workspace.workspaceFolders) {

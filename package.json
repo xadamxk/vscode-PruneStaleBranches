@@ -35,6 +35,30 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": [
+      {
+        "title": "Prune Stale Branches",
+        "order": 1,
+        "properties": {
+          "prune-stale-branches.statusBar.enabled": {
+            "type": "boolean",
+            "order": 1,
+            "default": true,
+            "description": "Show the status bar item for pruning stale local branches"
+          },
+          "prune-stale-branches.statusBar.alignment": {
+            "type": "string",
+            "order": 2,
+            "enum": [
+              "left",
+              "right"
+            ],
+            "default": "left",
+            "description": "Which side of the status bar to show the action button on"
+          }
+        }
+      }
+    ],
     "commands": [
       {
         "command": "prune-stale-branches.previewStaleBranchesCommand",
