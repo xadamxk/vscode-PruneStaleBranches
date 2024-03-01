@@ -2,8 +2,9 @@
   "name": "prune-stale-branches",
   "displayName": "prune-stale-branches",
   "description": "Easily prune stale branches in your project",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
+  "icon": "images/logo-transparent.png",
   "publisher": "xadamxk",
   "homepage": "https://github.com/xadamxk/vscode-PruneStaleBranches",
   "bugs": {
