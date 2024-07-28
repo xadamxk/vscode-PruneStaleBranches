@@ -1,7 +1,7 @@
 {
-  "name": "prune-stale-branches",
-  "displayName": "prune-stale-branches",
-  "description": "Easily prune stale branches in your project",
+  "name": "prune-stale-git-branches",
+  "displayName": "prune-stale-git-branches",
+  "description": "Easily prune stale branches in your git projects",
   "version": "1.0.0",
   "license": "MIT",
   "icon": "images/logo-transparent.png",
@@ -80,7 +80,9 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "vsce:package": "vsce package",
+    "vsce:publish": "vsce publish"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
@@ -90,6 +92,7 @@
     "@typescript-eslint/parser": "^6.15.0",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^2.31.1",
     "eslint": "^8.56.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",

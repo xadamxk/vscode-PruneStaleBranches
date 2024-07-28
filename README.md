@@ -16,8 +16,8 @@
 
 ### Commands
 
-- `Open Repository in Browser` Opens the git project at it's remote location
-- `Open File in Browser` Opens the file at it's remote location
+- `Preview Stale Branches` View the total number of stale branches
+- `Prune Stale Branches` Prunes all local, stale branches
 
 ## Extension Settings
 
