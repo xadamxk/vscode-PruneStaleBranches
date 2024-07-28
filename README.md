@@ -6,7 +6,11 @@
 
 ### Easily prune stale git branches in your project
 
-![Status bar demo](./images/demo.gif)
+![Prune command](./images/prune-command.gif)
+
+![Preview](./images/toolbar-preview.png)
+
+![Preview command](./images/preview-command.png)
 
 ## Features
 
@@ -25,6 +29,9 @@
 
 ## Release Notes
 
-1.0.0
+1.0.1
+- Fixed settings after project rename
+- Added example assets
 
+1.0.0
 - Initial release

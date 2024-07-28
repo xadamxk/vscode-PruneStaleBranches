@@ -1,8 +1,8 @@
 {
   "name": "prune-stale-git-branches",
-  "displayName": "prune-stale-git-branches",
+  "displayName": "Prune Stale Git Branches",
   "description": "Easily prune stale branches in your git projects",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "icon": "images/logo-transparent.png",
   "publisher": "xadamxk",
@@ -41,13 +41,13 @@
         "title": "Prune Stale Branches",
         "order": 1,
         "properties": {
-          "prune-stale-branches.statusBar.enabled": {
+          "prune-stale-git-branches.statusBar.enabled": {
             "type": "boolean",
             "order": 1,
             "default": true,
             "description": "Show the status bar item for pruning stale local branches"
           },
-          "prune-stale-branches.statusBar.alignment": {
+          "prune-stale-git-branches.statusBar.alignment": {
             "type": "string",
             "order": 2,
             "enum": [
@@ -62,11 +62,11 @@
     ],
     "commands": [
       {
-        "command": "prune-stale-branches.previewStaleBranchesCommand",
+        "command": "prune-stale-git-branches.previewStaleBranchesCommand",
         "title": "Preview Stale Branches"
       },
       {
-        "command": "prune-stale-branches.pruneStaleBranchesCommand",
+        "command": "prune-stale-git-branches.pruneStaleBranchesCommand",
         "title": "Prune Stale Branches"
       }
     ]

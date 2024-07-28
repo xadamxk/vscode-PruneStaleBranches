@@ -1,7 +1,7 @@
 /**
  * Used to identify the extension - must match the name in package.json
  */
-export const EXTENSION_NAME = "prune-stale-branches";
+export const EXTENSION_NAME = "prune-stale-git-branches";
 
 /**
  * Commands that can be executed by the extension - must match the command names in package.json
