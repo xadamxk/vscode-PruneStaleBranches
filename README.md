@@ -25,7 +25,7 @@
 
 ## Extension Settings
 
-![Extension settings](./images/settings.png)
+![Extension settings](./images/settings.PNG)
 
 ## Release Notes
 
