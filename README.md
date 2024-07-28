@@ -1,6 +1,6 @@
 # Prune Stale Branches
 
-![Installs](https://vsmarketplacebadges.dev/installs/xadamxk.prune-stale-branches.svg) ![Downloads](https://vsmarketplacebadges.dev/downloads/xadamxk.prune-stale-branches.svg) ![Rating](https://vsmarketplacebadges.dev/rating/xadamxk.prune-stale-branches.svg) ![Version](https://vsmarketplacebadges.dev/version/xadamxk.prune-stale-branches.svg)
+![Installs](https://vsmarketplacebadges.dev/installs/xadamxk.prune-stale-git-branches.svg) ![Downloads](https://vsmarketplacebadges.dev/downloads/xadamxk.prune-stale-git-branches.svg) ![Rating](https://vsmarketplacebadges.dev/rating/xadamxk.prune-stale-git-branches.svg) ![Version](https://vsmarketplacebadges.dev/version/xadamxk.prune-stale-git-branches.svg)
 
 ![logo](./images/logo-transparent.png)
 
